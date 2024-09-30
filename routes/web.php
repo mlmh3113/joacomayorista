@@ -1,0 +1,60 @@
+<?php
+
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ProfileController;
+use Illuminate\Foundation\Application;
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\MainController;
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ContactController;
+use App\Http\Controllers\CartController;
+use Inertia\Inertia;
+
+// Route::get('/', function () {
+//     return Inertia::render('Welcome', [
+//         'canLogin' => Route::has('login'),
+//         'canRegister' => Route::has('register'),
+//         'laravelVersion' => Application::VERSION,
+//         'phpVersion' => PHP_VERSION,
+//     ]);
+// });
+
+// Route::get('/dashboard', function () {
+//     return Inertia::render('Dashboard');
+// })->middleware(['auth', 'verified'])->name('dashboard');
+
+// Route::middleware('auth')->group(function () {
+//     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+//     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+//     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+// });
+
+Route::get('/',[MainController::class, 'index'])->name('index');
+Route::get('/contact',[MainController::class, 'contact'])->name('contact');
+
+Route::post('/contact/store',[ContactController::class,'store'])->name('contact.store');
+
+//categories
+Route::get('/categories',[CategoryController::class, 'index'])->name('categories');
+Route::post('/categories/store',[CategoryController::class,'store'])->name('category.store');
+Route::put('/categories/update/{id}', [CategoryController::class, 'update'])->name('category.update');
+Route::delete('/categories/delete/{id}', [CategoryController::class, 'delete'])->name('category.delete');
+
+//products
+Route::get('/products',[ProductController::class, 'index'])->name('products');
+Route::post('/products/store',[ProductController::class,'store'])->name('product.store');
+Route::get('/products/create',[ProductController::class,'create'])->name('product.create');
+Route::delete('/products/delete/{id}', [ProductController::class, 'delete'])->name('product.delete');
+Route::get('products/edit/{id}', [ProductController::class, 'edit'])->name('product.edit');
+Route::put('/products/update/{id}', [ProductController::class, 'update'])->name('product.update');
+Route::get('/products/show/{id}', [ProductController::class, 'show'])->name('product.show');
+
+//carrito
+
+Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
+
+//compra
+
+Route::post('/compra', [CartController::class, 'store'])->name('compra.store');
+
+require __DIR__.'/auth.php';
