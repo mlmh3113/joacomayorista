@@ -1,7 +1,15 @@
 <script setup>
+import { useCategoriesStore } from '@/stores/categoriesStore';
+
+import { Link } from '@inertiajs/vue3';
+
+const { categories, isLoading, isError } = useCategoriesStore();
+
 </script>
 
 <template>
+
+  
   <div class="w-full bg-black text-white">
     <!-- Contenedor principal del footer -->
     <div class="flex flex-col lg:flex-row justify-around items-center py-6 space-y-6 lg:space-y-0">
@@ -17,24 +25,26 @@
       <div class="text-center">
         <h2 class="text-xl font-semibold mb-2">Categorías</h2>
         <ul>
-          <li><a href="#" class="hover:underline">Categoría 1</a></li>
-          <li><a href="#" class="hover:underline">Categoría 2</a></li>
-          <li><a href="#" class="hover:underline">Categoría 3</a></li>
+          <li v-for="category in categories" :key="category.id">
+            <Link :href="route('product.category', category.name)"
+                     class="block px-4 py-2 capitalize">{{
+                  category.name }}</Link>
+          </li>
         </ul>
       </div>
 
       <!-- Sección de Contacto -->
       <div class="text-center">
         <h2 class="text-xl font-semibold mb-2">Contacto</h2>
-        <p>Email: contacto@joacomayorista.com</p>
-        <p>Teléfono: +123 456 7890</p>
+        <p>Email: joaco.mayorista.tienda@gmail.com</p>
+        <p>Teléfono: 541155061985</p>
       </div>
 
       <!-- Sección de Redes Sociales -->
       <div class="text-center">
         <h2 class="text-xl font-semibold mb-2">Redes Sociales</h2>
         <ul class="flex space-x-4">
-          <li><a href="#" class="hover:underline">Facebook</a></li>
+          <li><a href="https://www.facebook.com/search/top?q=tienda%20joaco%20mayorista" class="hover:underline" target="_blank">Facebook</a></li>
           <li><a href="#" class="hover:underline">Instagram</a></li>
           <li><a href="#" class="hover:underline">Twitter</a></li>
         </ul>

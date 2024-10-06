@@ -1,4 +1,5 @@
 <template>
+  
   <swiper
     :slidesPerView="3"
     :breakpoints="{
@@ -25,6 +26,7 @@
     <swiper-slide>
       <img class="w-full my-5 object-cover rounded-full aspect-square shadow-md shadow-gray-500 hover:cursor-pointer" src="../../../../public/images/billetera1.png" alt="">
       <p class="text-center text-sm -mt-5 uppercase font-bold text-gray-800">billeteras</p>
+      
     </swiper-slide>
     <swiper-slide>
       <img class="w-full my-5 object-cover rounded-full aspect-square shadow-md shadow-gray-500 hover:cursor-pointer" src="../../../../public/images/billetera1.png" alt="">
@@ -34,21 +36,18 @@
       <img class="w-full my-5 object-cover rounded-full aspect-square shadow-md shadow-gray-500 hover:cursor-pointer" src="../../../../public/images/billetera1.png" alt="">
       <p class="text-center text-sm -mt-5 uppercase font-bold text-gray-800">llaveros</p>
     </swiper-slide>
-    <swiper-slide>
-      <img class="w-full my-5 object-cover rounded-full aspect-square shadow-md shadow-gray-500 hover:cursor-pointer" src="../../../../public/images/billetera1.png" alt="">
-      <p class="text-center text-sm -mt-5 uppercase font-bold text-gray-800">carteras</p>
-    </swiper-slide>
-    <swiper-slide>
-      <img class="w-full my-5 object-cover rounded-full aspect-square shadow-md shadow-gray-500 hover:cursor-pointer" src="../../../../public/images/billetera1.png" alt="">
-      <p class="text-center text-sm -mt-5 uppercase font-bold text-gray-800">billetera</p>
-    </swiper-slide>
+
     <!-- Repite las demás swiper-slide según sea necesario -->
   </swiper>
+
+
+
 </template>
 
 <script setup>
   // Import Swiper Vue.js components
   import { Swiper, SwiperSlide } from 'swiper/vue';
+  import { useCategoriesStore } from '@/stores/categoriesStore';
 
   defineProps({
     categories: Object

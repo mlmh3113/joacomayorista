@@ -13,13 +13,13 @@ return new class extends Migration
     {
         Schema::create('compra_productos', function (Blueprint $table) {
             $table->unsignedBigInteger('compra_id');
-            $table->unsignedBigInteger('producto_id');
+            $table->unsignedBigInteger('product_id');
 
             $table->integer('cantidad');
             $table->double('precio');
 
             $table->foreign('compra_id')->references('id')->on('compras')->onDelete('cascade');
-            $table->foreign('producto_id')->references('id')->on('products')->onDelete('cascade');
+            $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
 
             $table->timestamps();
         });

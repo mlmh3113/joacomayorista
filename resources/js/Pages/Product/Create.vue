@@ -6,6 +6,8 @@ import InputError from "@/Components/InputError.vue";
 import InputLabel from "@/Components/InputLabel.vue";
 import TextInput from "@/Components/TextInput.vue";
 import TextArea from "@/Components/TextArea.vue";
+import 'sweetalert2/dist/sweetalert2.min.css';
+import Swal from "sweetalert2";
 
 defineProps({
     categories: Array
@@ -57,7 +59,18 @@ function multiImage() {
 }
 
 function submit() {
-    form.post(route('product.store'));
+    form.post(route('product.store'), {
+        onSuccess: () => {
+            Swal.fire({
+                    icon: 'success',
+                    title: 'Producto creado correctamente',
+                    showConfirmButton: false,
+                    timer: 1500
+                }),
+            form.reset('name', 'description', 'price', 'category_id', 'stock', 'color', 'caracteristics', 'main_image', 'images');
+
+        }
+    });
 }
 </script>
 

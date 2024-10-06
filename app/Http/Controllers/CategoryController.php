@@ -39,4 +39,10 @@ class CategoryController extends Controller
         $category->delete();
         return redirect()->back();
     }
+
+    public function categoriesJson()
+    {
+        $categories = Category::all();
+        return response()->json($categories);
+    }
 }

@@ -85,6 +85,20 @@ export const useProcesoDeCompraStore = defineStore("procesoDeCompra", {
         getDni() {
             return this.dni;
         },
+
+        getCompra() {
+            return {
+                nombre: this.getNombre(),
+                apellido: this.getApellido(),
+                email: this.getEmail(),
+                direccion: this.getDireccion(),
+                localidad: this.getLocalidad(),
+                provincia: this.getProvincia(),
+                codigoPostal: this.getCodigoPostal(),
+                telefono: this.getTelefono(),
+                dni: this.getDni(),
+            };
+        },
    
     },
 })

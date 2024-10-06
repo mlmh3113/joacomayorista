@@ -1,6 +1,6 @@
 <template>
     <a 
-     href="https://wa.me/5491164946486?text=Hola%20quiero%20consultar%20por%20un%20producto"
+     href="https://wa.me/5491155061985?text=Hola%20quiero%20consultar%20por%20un%20producto"
      class="fixed bottom-10 right-10 text-white p-3 rounded-full bg-green-500 shadow-md shadow-black z-50
      hover:bg-green-600 hover:shadow hover:scale-105 transition-all duration-300"
      target="_blank"

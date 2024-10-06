@@ -95,4 +95,51 @@ class ProductController extends Controller
         $product->delete();
         return redirect()->back()->with('success', 'Producto eliminado correctamente');
     }
+    public function search(Request $request)
+    {
+        // Convertimos el término de búsqueda a minúsculas y lo obtenemos
+        $searchTerm = $request->search;
+    
+        // Extraemos las primeras letras del término de búsqueda para abarcar tanto "reloj" como "relojes"
+        $searchTermBase = substr($searchTerm, 0, 4); // Se puede ajustar el número de caracteres
+    
+        // Búsqueda de productos que coincidan con el término de búsqueda, incluyendo el campo characteristics
+        $products = Product::with('categories')
+            ->where(function($query) use ($searchTerm, $searchTermBase) {
+                $query->where('name', 'like', '%' . $searchTerm . '%')
+                      ->orWhere('name', 'like', '%' . $searchTermBase . '%')
+                      ->orWhere('caracteristics', 'like', '%' . $searchTerm . '%')
+                      ->orWhere('caracteristics', 'like', '%' . $searchTermBase . '%');
+            })
+            ->get();
+    
+        $categories = Category::all();
+    
+        // Retorna la vista con los productos y sus categorías
+        return Inertia::render('Product/Search', [
+            'products' => $products,
+            'categories' => $categories
+        ]);
+    }
+    
+
+    public function searchByCategory(Request $request)
+    {
+        $products = Product::with('categories')
+            ->whereHas('categories', function ($query) use ($request) {
+                $query->where('name', $request->category);
+            })
+            ->get();
+    
+        $categories = Category::all();
+    
+        return Inertia::render('Product/Search', [
+            'products' => $products,
+            'categories' => $categories
+        ]);
+    }
+
+
+
+
 }

@@ -1,5 +1,28 @@
 <script setup>
 
+import { useForm } from '@inertiajs/vue3';
+import 'sweetalert2/dist/sweetalert2.min.css';
+import Swal from "sweetalert2";
+
+const form = useForm({
+    email: '',
+});
+
+const submit = () => {
+    form.post(route('newsLetter.store'), {
+        onSuccess: () => {
+            Swal.fire({
+                icon: 'success',
+                title: 'Te has registrado correctamente',
+                showConfirmButton: false,
+                timer: 1500
+            })
+            form.reset('email');
+        },
+    });
+
+};
+
 </script>
 
 <template>
@@ -13,16 +36,16 @@
 
         <div class=" flex justify-center items-center w-full">
 
-            <form class="flex w-full items-center mx-auto justify-center">
+            <form @submit.prevent="submit"  class="flex w-full items-center mx-auto justify-center">
                 <label for="voice-search" class="sr-only">Search</label>
                 <div class="relative md:w-1/2 w-full ">
                     <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
                         <i class="fa-regular fa-envelope text-gray-800"></i>
                     </div>
-                    <input type="text" id="voice-search"
+                    <input v-model="form.email" type="text" id="voice-search"
                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                         placeholder="Email" required />
-                    <button type="button" class="absolute inset-y-0 end-0 flex items-center pe-3">
+                    <button type="submit" class="absolute inset-y-0 end-0 flex items-center pe-3">
                         <i class="fa-solid fa-arrow-right text-gray-800"></i>
                     </button>
                 </div>

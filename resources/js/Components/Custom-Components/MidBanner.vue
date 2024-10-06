@@ -1,7 +1,7 @@
 <template>
     <div class="banner-container">
       <img
-        src="https://res.cloudinary.com/dkoocayxp/image/upload/v1727528273/Joaco%20Mayorista/daughter-closed-her-mother-s-eye_pp1fxc.png"
+        src="https://res.cloudinary.com/dkoocayxp/image/upload/v1728249073/Joaco%20Mayorista/daughter-closed-her-mother-s-eye_eiuskc.png"
         alt="Banner"
         class="banner-image"
       />

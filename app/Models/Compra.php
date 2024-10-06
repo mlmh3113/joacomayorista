@@ -10,4 +10,10 @@ class Compra extends Model
     use HasFactory;
 
     protected $guarded = [];
+
+    public function productos()
+    {
+        return $this->belongsToMany(Product::class, 'compra_productos');
+        
+    }
 }

@@ -7,6 +7,8 @@ import 'swiper/css/navigation';
 import { Navigation } from 'swiper/modules';
 import { ref } from 'vue';
 import { useCarritoStore } from '@/stores/carritoStore';
+import 'sweetalert2/dist/sweetalert2.min.css';
+import Swal from "sweetalert2";
 
 const props = defineProps({
     product: Object
@@ -16,7 +18,16 @@ const cantidad = ref(1);
 const carritoStore = useCarritoStore(); // Instancia del store
 
 const agregarAlCarrito = () => {
-    carritoStore.agregarAlCarrito(props.product, cantidad.value); // Llama a la acción del store
+    carritoStore.agregarAlCarrito(props.product, cantidad.value);
+
+    Swal.fire({
+        icon: 'success',
+        title: 'Agregado al carrito',
+        showConfirmButton: false,
+        timer: 1500
+    })
+    
+    
 };
 
 // Convierte las imágenes de string a un array

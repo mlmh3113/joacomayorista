@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\ApiProductController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
@@ -8,6 +9,7 @@ use App\Http\Controllers\MainController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\NewsController;
 use Inertia\Inertia;
 
 // Route::get('/', function () {
@@ -39,6 +41,7 @@ Route::get('/categories',[CategoryController::class, 'index'])->name('categories
 Route::post('/categories/store',[CategoryController::class,'store'])->name('category.store');
 Route::put('/categories/update/{id}', [CategoryController::class, 'update'])->name('category.update');
 Route::delete('/categories/delete/{id}', [CategoryController::class, 'delete'])->name('category.delete');
+Route::get('/categories/json', [CategoryController::class, 'categoriesJson'])->name('category.json');
 
 //products
 Route::get('/products',[ProductController::class, 'index'])->name('products');
@@ -48,13 +51,21 @@ Route::delete('/products/delete/{id}', [ProductController::class, 'delete'])->na
 Route::get('products/edit/{id}', [ProductController::class, 'edit'])->name('product.edit');
 Route::put('/products/update/{id}', [ProductController::class, 'update'])->name('product.update');
 Route::get('/products/show/{id}', [ProductController::class, 'show'])->name('product.show');
+Route::get('/products/search', [ProductController::class, 'search'])->name('product.search');
+Route::get('products/search/{category}', [ProductController::class, 'searchByCategory'])->name('product.category');
 
 //carrito
 
 Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
 
+
 //compra
 
 Route::post('/compra', [CartController::class, 'store'])->name('compra.store');
+
+//news
+
+Route::post('newsLetter',[NewsController::class, 'store'])->name('newsLetter.store');
+
 
 require __DIR__.'/auth.php';
