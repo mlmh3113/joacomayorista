@@ -11,15 +11,18 @@ class Product extends Model
     use HasFactory;
 
     protected $guarded = [];
-    protected $categorias = [];
     protected $cast = [
-        'images'=>'array'
+        'images' => 'array'
     ];
 
-
-    public function categories():BelongsToMany
+    public function categories(): BelongsToMany
     {
         return $this->belongsToMany(Category::class, 'category_product', 'product_id', 'category_id');
     }
     
+    public function compras(): BelongsToMany
+    {
+        return $this->belongsToMany(Compra::class, 'compra_productos')
+            ->withPivot('cantidad', 'precio');
+    }
 }
