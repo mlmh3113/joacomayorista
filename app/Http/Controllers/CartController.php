@@ -40,7 +40,7 @@ class CartController extends Controller
         }
 
         // Enviar el correo con los detalles de la compra
-        Mail::to($request->email)->send(new FacturaMail($compra));
+        Mail::to('contacto@joacomayorista.com.ar')->send(new FacturaMail($compra));
 
         return redirect()->back()->with('success', 'La compra se ha creado correctamente y se ha enviado un correo de confirmación.');
     }
