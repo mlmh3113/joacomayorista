@@ -9,6 +9,8 @@ import ResumenDeCompra from '@/Pages/Cart/ResumenDeCompra.vue';
 import { useCarritoStore } from '@/stores/carritoStore';
 import { useProcesoDeCompraStore } from '@/stores/procesoDeCompraStore';
 import { useForm } from '@inertiajs/vue3';
+import 'sweetalert2/dist/sweetalert2.min.css';
+import Swal from "sweetalert2";
 
 
 const procesoDeCompraStore = useProcesoDeCompraStore();
@@ -51,7 +53,19 @@ const FinalizarCompra = () => {
     };
 
     // Envía los datos al servidor
-    router.post(route('compra.store'), compraData);
+    router.post(route('compra.store'), compraData,
+        {
+            onSuccess: () => {
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Tu compra se ha procesado con éxito, en minutos recibiras un mensaje al WhatsApp',
+                    showConfirmButton: false,
+                    timer: 4000
+                })
+                // Limpiar el carrito
+                carritoStore.vaciarCarrito();
+            }
+        });
     
 }
 
