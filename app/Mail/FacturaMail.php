@@ -28,7 +28,7 @@ class FacturaMail extends Mailable
     {
         return new Envelope(
             subject: 'Factura Mail',
-            from: 'Qj7U0@example.com'
+            from: 'contacto@joacomayorista.com.ar'
 
         );
     }
