@@ -1,16 +1,19 @@
 <?php
 
-use App\Http\Controllers\Api\ApiProductController;
-use App\Http\Controllers\CategoryController;
-use App\Http\Controllers\ProfileController;
-use Illuminate\Foundation\Application;
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\MainController;
-use App\Http\Controllers\ProductController;
-use App\Http\Controllers\ContactController;
-use App\Http\Controllers\CartController;
-use App\Http\Controllers\NewsController;
 use Inertia\Inertia;
+use Illuminate\Support\Facades\Route;
+use Illuminate\Foundation\Application;
+use App\Http\Controllers\CartController;
+use App\Http\Controllers\MailController;
+use App\Http\Controllers\MainController;
+use App\Http\Controllers\NewsController;
+use App\Http\Controllers\ContactController;
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ProfileController;
+
+
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\Api\ApiProductController;
 
 // Route::get('/', function () {
 //     return Inertia::render('Welcome', [
@@ -67,5 +70,9 @@ Route::post('/compra', [CartController::class, 'store'])->name('compra.store');
 
 Route::post('newsLetter',[NewsController::class, 'store'])->name('newsLetter.store');
 
+//mail
+Route::get('/mail',[MailController::class, 'index'])->name('mail.index');
+
+Route::get('/mail/send',[MailController::class, 'mailFactura'])->name('mail.send');
 
 require __DIR__.'/auth.php';
