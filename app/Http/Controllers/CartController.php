@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Compra;
 use Inertia\Inertia;
+use App\Mail\FacturaMail; // Importa el Mailable
+use Illuminate\Support\Facades\Mail; // Importa la fachada Mail
 
 class CartController extends Controller
 {
@@ -36,9 +38,11 @@ class CartController extends Controller
                 'precio' => $producto['precio'],
             ]);
         }
-    
 
-        return redirect()->back()->with('success', 'La compra se ha creado correctamente');
+        // Enviar el correo con los detalles de la compra
+        Mail::to($request->email)->send(new FacturaMail($compra));
+
+        return redirect()->back()->with('success', 'La compra se ha creado correctamente y se ha enviado un correo de confirmación.');
     }
 
     public function delete(Request $request)

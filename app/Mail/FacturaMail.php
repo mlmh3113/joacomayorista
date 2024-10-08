@@ -13,12 +13,16 @@ class FacturaMail extends Mailable
 {
     use Queueable, SerializesModels;
 
+    public $compra;
+
     /**
      * Create a new message instance.
+     *
+     * @param $compra
      */
-    public function __construct()
+    public function __construct($compra)
     {
-        //
+        $this->compra = $compra;
     }
 
     /**
@@ -29,7 +33,6 @@ class FacturaMail extends Mailable
         return new Envelope(
             subject: 'Factura Mail',
             from: 'contacto@joacomayorista.com.ar'
-
         );
     }
 
@@ -39,7 +42,7 @@ class FacturaMail extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'emails.factura',
+            view: 'emails.factura', // Asegúrate de que esta vista exista
         );
     }
 
