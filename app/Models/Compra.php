@@ -1,19 +1,22 @@
 <?php
 
+// App\Models\Compra.php
+
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Compra extends Model
 {
-    use HasFactory;
+    protected $fillable = [
+        'nombre', 'apellidos', 'dni', 'direccion', 'localidad', 
+        'provincia', 'email', 'telefono', 'fecha', 'total'
+    ];
 
-    protected $guarded = [];
-
+    // Relación con los productos
     public function productos()
     {
-        return $this->belongsToMany(Product::class, 'compra_productos');
-        
+        return $this->belongsToMany(Product::class, 'compra_productos')
+                    ->withPivot('cantidad', 'precio');
     }
 }
