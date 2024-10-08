@@ -20,7 +20,7 @@ class MailController extends Controller
     
     public function mailFactura(Request $request)
     {
-        Mail::to('contacto@nvnwebdesing.com')->send(new FacturaMail());
+        Mail::to('contacto@joacomayorista.com.ar')->send(new FacturaMail());
 
 
         return redirect()->back();
