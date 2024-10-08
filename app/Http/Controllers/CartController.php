@@ -5,8 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Compra;
 use Inertia\Inertia;
-use App\Mail\FacturaMail; // Importa el Mailable
-use Illuminate\Support\Facades\Mail; // Importa la fachada Mail
+use App\Mail\FacturaMail; // Importa la clase de correo
+use Illuminate\Support\Facades\Mail;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class CartController extends Controller
 {
@@ -29,7 +30,6 @@ class CartController extends Controller
             'telefono' => $request->telefono,
             'fecha' => now(),
             'total' => $request->total,
-            // Si tienes otros campos en la tabla compras, agrégalo aquí
         ]);
 
         foreach ($request->productos as $producto) {
@@ -39,10 +39,13 @@ class CartController extends Controller
             ]);
         }
 
-        // Enviar el correo con los detalles de la compra
-        Mail::to('contacto@joacomayorista.com.ar')->send(new FacturaMail($compra));
+        // Generar el PDF
+        $pdf = Pdf::loadView('emails.facturaPDF', ['compra' => $compra]);
 
-        return redirect()->back()->with('success', 'La compra se ha creado correctamente y se ha enviado un correo de confirmación.');
+        // Enviar el correo con la factura PDF
+        Mail::to('contacto@joacomayorista.com.ar')->send(new FacturaMail($compra, $pdf));
+
+        return redirect()->back()->with('success', 'La compra se ha creado correctamente y se ha enviado la factura por correo.');
     }
 
     public function delete(Request $request)

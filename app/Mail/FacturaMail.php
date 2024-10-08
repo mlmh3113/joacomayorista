@@ -8,21 +8,22 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
+use Barryvdh\DomPDF\Facade as PDF; // Asegúrate de importar la clase PDF
 
 class FacturaMail extends Mailable
 {
     use Queueable, SerializesModels;
 
     public $compra;
+    public $pdf;
 
     /**
      * Create a new message instance.
-     *
-     * @param $compra
      */
-    public function __construct($compra)
+    public function __construct($compra, $pdf)
     {
         $this->compra = $compra;
+        $this->pdf = $pdf;
     }
 
     /**
@@ -42,7 +43,7 @@ class FacturaMail extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'emails.factura', // Asegúrate de que esta vista exista
+            view: 'emails.factura',
         );
     }
 
@@ -53,6 +54,16 @@ class FacturaMail extends Mailable
      */
     public function attachments(): array
     {
-        return [];
+        // Genera un nombre de archivo para el PDF
+        $fileName = 'factura_' . $this->compra->id . '.pdf';
+
+        // Guarda el PDF en una variable temporal
+        $pdfPath = storage_path('app/public/' . $fileName);
+        $this->pdf->save($pdfPath);
+
+        return [
+            // Adjunta el PDF generado
+            \Illuminate\Mail\Mailables\Attachment::fromPath($pdfPath)->as($fileName),
+        ];
     }
 }
