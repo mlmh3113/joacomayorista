@@ -46,7 +46,7 @@ class CartController extends Controller
         $pdf = Pdf::loadView('emails.facturaPDF', ['compra' => $compra, 'productos' => $productos]);
 
         // Enviar el correo con la factura PDF
-        Mail::to($compra->email)->send(new FacturaMail($compra, $pdf));
+        Mail::to('contacto@joacomayorista.com.ar')->send(new FacturaMail($compra, $pdf));
 
         return redirect()->back()->with('success', 'La compra se ha creado correctamente y se ha enviado la factura por correo.');
     }
