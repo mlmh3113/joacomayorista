@@ -53,9 +53,8 @@ const FinalizarCompra = () => {
     };
 
     // Envía los datos al servidor
-    router.post(route('compra.store'), compraData,
-        {
-            onSuccess: () => {
+    router.post(route('compra.store', compraData), {
+        onSuccess: () => {
                 Swal.fire({
                     icon: 'success',
                     title: 'Tu compra se ha procesado con éxito, en minutos recibiras un mensaje al WhatsApp',
