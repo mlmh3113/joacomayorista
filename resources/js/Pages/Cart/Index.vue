@@ -55,16 +55,14 @@ const FinalizarCompra = () => {
     // Envía los datos al servidor
     router.post(route('compra.store', compraData), {
         onSuccess: () => {
-                Swal.fire({
-                    icon: 'success',
-                    title: 'Tu compra se ha procesado con éxito, en minutos recibiras un mensaje al WhatsApp',
-                    showConfirmButton: false,
-                    timer: 4000
-                })
-                // Limpiar el carrito
-                carritoStore.vaciarCarrito();
-            }
-        });
+            Swal.fire({
+                title: 'Gracias por su compra',
+                text: 'Su compra ha sido guardada exitosamente.',
+                icon: 'success',
+                confirmButtonText: 'Continuar'
+            });
+        }
+    });
     
 }
 
