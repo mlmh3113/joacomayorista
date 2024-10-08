@@ -8,26 +8,21 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Mail\Mailables\Attachment;
 
 class FacturaMail extends Mailable
 {
     use Queueable, SerializesModels;
 
     public $compra;
+    public $pdf; // Agregar propiedad para el PDF
 
-    /**
-     * Create a new message instance.
-     *
-     * @param $compra
-     */
-    public function __construct($compra)
+    public function __construct($compra, $pdf)
     {
         $this->compra = $compra;
+        $this->pdf = $pdf; // Asignar el PDF
     }
 
-    /**
-     * Get the message envelope.
-     */
     public function envelope(): Envelope
     {
         return new Envelope(
@@ -36,23 +31,22 @@ class FacturaMail extends Mailable
         );
     }
 
-    /**
-     * Get the message content definition.
-     */
     public function content(): Content
     {
         return new Content(
-            view: 'emails.factura', // Asegúrate de que esta vista exista
+            view: 'emails.factura',
         );
     }
 
-    /**
-     * Get the attachments for the message.
-     *
-     * @return array<int, \Illuminate\Mail\Mailables\Attachment>
-     */
     public function attachments(): array
     {
-        return [];
+        return [
+            // Adjuntar el PDF generado
+            new Attachment(
+                content: $this->pdf->output(),
+                name: 'factura.pdf',
+                mimeType: 'application/pdf'
+            )
+        ];
     }
 }

@@ -51,14 +51,7 @@ const FinalizarCompra = () => {
     };
 
     // Envía los datos al servidor
-    router.post(route('compra.store'), compraData, {
-        onSuccess: () => {
-            const whatsappLinkCliente = `https://wa.me/5491139236695?text=Hola%20quiero%20consultar%20por%20un%20producto`;
-
-            // Abrir el enlace de WhatsApp para el cliente en una nueva pestaña
-            window.open(whatsappLinkCliente, '_blank');
-        }
-    });
+    router.post(route('compra.store'), compraData);
     
 }
 
