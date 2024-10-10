@@ -40,8 +40,8 @@ defineProps({
 
                     <!-- Precio del producto -->
                     <div class="flex items-center justify-between mt-4">
-                        <p class="text-xl line-through text-gray-900 dark:text-white">${{ (parseFloat(product.price) * 1.25).toFixed(2) }}</p>
-                        <p class="text-xl font-bold text-gray-800">${{ (parseFloat(product.price)).toFixed(2) }}</p>
+                        <p class="text-xl line-through text-gray-900 dark:text-white">${{ parseFloat(product.price).toFixed(2) }}</p>
+                        <p class="text-xl font-bold text-gray-800">${{ (parseFloat(product.price)*(100-product.discount)/100).toFixed(2)  }}</p>
                     </div>
                 </div>
             </div>
