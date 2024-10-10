@@ -1,6 +1,8 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Factura de Compra</title>
 </head>
 <body>
@@ -15,6 +17,14 @@
         <li>Provincia: {{ $compra->provincia }}</li>
         <li>Email: {{ $compra->email }}</li>
         <li>Teléfono: {{ $compra->telefono }}</li>
+        
+        <!-- Mostrar el descuento -->
+        <li>Descuento: ${{ $compra->descuento }}</li>
+
+        <!-- Mostrar el gasto de envío -->
+        <li>Costo de Envío: ${{ $compra->envio }}</li>
+
+        <!-- Mostrar el total después del descuento y el costo de envío -->
         <li>Total: ${{ $compra->total }}</li>
     </ul>
 </body>

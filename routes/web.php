@@ -71,8 +71,8 @@ Route::post('/compra', [CartController::class, 'store'])->name('compra.store');
 Route::post('newsLetter',[NewsController::class, 'store'])->name('newsLetter.store');
 
 //mail
-Route::get('/mail',[MailController::class, 'index'])->name('mail.index');
+// Route::get('/mail',[MailController::class, 'index'])->name('mail.index');
 
-Route::get('/mail/send',[MailController::class, 'mailFactura'])->name('mail.send');
+// Route::get('/mail/send',[MailController::class, 'mailFactura'])->name('mail.send');
 
 require __DIR__.'/auth.php';

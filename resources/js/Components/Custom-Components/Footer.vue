@@ -45,8 +45,8 @@ const { categories, isLoading, isError } = useCategoriesStore();
         <h2 class="text-xl font-semibold mb-2">Redes Sociales</h2>
         <ul class="flex space-x-4">
           <li><a href="https://www.facebook.com/search/top?q=tienda%20joaco%20mayorista" class="hover:underline" target="_blank">Facebook</a></li>
-          <li><a href="#" class="hover:underline">Instagram</a></li>
-          <li><a href="#" class="hover:underline">Twitter</a></li>
+          <li><a href="https://www.instagram.com/joaco_mayorista_tienda/" class="hover:underline" target="_blank" >Instagram</a></li>
+          <li><a href="#" class="hover:underline">Tik-Tok</a></li>
         </ul>
       </div>
     </div>

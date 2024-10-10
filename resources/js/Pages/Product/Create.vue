@@ -1,3 +1,4 @@
+
 <script setup>
 import { Head, Link, useForm } from '@inertiajs/vue3';
 import { ref } from 'vue';
@@ -17,6 +18,7 @@ const form = useForm({
     name: '',
     description: '',
     price: '',
+    discount: 0,
     category_id: '',
     stock: '',
     color: '',
@@ -67,7 +69,7 @@ function submit() {
                     showConfirmButton: false,
                     timer: 1500
                 }),
-            form.reset('name', 'description', 'price', 'category_id', 'stock', 'color', 'caracteristics', 'main_image', 'images');
+            form.reset('name', 'description', 'price', 'discount', 'category_id', 'stock', 'color', 'caracteristics', 'main_image', 'images');
 
         }
     });
@@ -125,6 +127,20 @@ function submit() {
                     <TextInput id="price" type="text" class="mt-1 block w-full border-gray-300 rounded-lg" v-model="form.price" required />
                     <InputError class="mt-2" :message="form.errors.price" />
                 </div>
+
+                       <!-- Descuento -->
+                       <div>
+                    <InputLabel for="discount" value="Descuento" />
+                    <select v-model="form.discount" class="mt-1 block w-full border-gray-300 rounded-lg" required>
+                        <option value="" disabled>Selecciona un descuento</option>
+                        <option value="0">Sin Descuento</option>
+                        <option value="10">10%</option>
+                        <option value="20">20%</option>
+                        <option value="35">35%</option>
+                    </select>
+                    <InputError class="mt-2" :message="form.errors.discount" />
+                </div>
+                
 
                 <!-- Categoría -->
                 <div>

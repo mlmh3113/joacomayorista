@@ -9,8 +9,11 @@ import ResumenDeCompra from '@/Pages/Cart/ResumenDeCompra.vue';
 import { useCarritoStore } from '@/stores/carritoStore';
 import { useProcesoDeCompraStore } from '@/stores/procesoDeCompraStore';
 import { useForm } from '@inertiajs/vue3';
+
 import 'sweetalert2/dist/sweetalert2.min.css';
 import Swal from "sweetalert2";
+
+
 
 
 const procesoDeCompraStore = useProcesoDeCompraStore();
@@ -44,7 +47,9 @@ const FinalizarCompra = () => {
     // Obtiene los datos del comprador
     const compraData = {
         ...procesoDeCompraStore.getCompra(), // Asegúrate de que esto incluya nombre, apellido, dni, etc.
-        total: totalCarrito.value, // Incluye el total de la compra
+        envio: procesoDeCompraStore.getCostoEnvio(),
+        total: totalCarrito.value + procesoDeCompraStore.getCostoEnvio(), // Incluye el total de la compra
+        descuento: procesoDeCompraStore.getTotalDescuentos(),
         productos: carritoStore.productos.map(producto => ({
             id: producto.id, // ID del producto
             cantidad: producto.cantidad, // Cantidad del producto en el carrito
@@ -52,19 +57,29 @@ const FinalizarCompra = () => {
         }))
     };
 
-    // Envía los datos al servidor
-    router.post(route('compra.store', compraData), {
-        onSuccess: () => {
+    // Mostrar la alerta de confirmación
+    Swal.fire({
+        title: '¿Estás seguro de que deseas finalizar la compra?',
+        text: 'No podrás deshacer esta acción',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Sí, finalizar',
+        cancelButtonText: 'Cancelar'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            // Si el usuario confirma, envía los datos al servidor
+            router.post(route('compra.store', compraData));
+
+            // Mostrar una alerta de éxito
             Swal.fire({
-                title: 'Gracias por su compra',
-                text: 'Su compra ha sido guardada exitosamente.',
+                title: 'Compra finalizada',
+                text: 'Tu compra se ha realizado con éxito. En minutos reecibiras un mensaje de confirmación',
                 icon: 'success',
-                confirmButtonText: 'Continuar'
+                timer: 4000
             });
         }
     });
-    
-}
+};
 
 
 

@@ -1,21 +1,19 @@
 <script setup>
-
 defineProps({
     product: Object
 })
-
-
-
-
 </script>
 
 <template>
-
-
     <a :href="route('product.show', product.id)">
-    <div class="flex justify-center items-center py-8">
+        <div class="flex justify-center items-center py-8">
             <!-- Contenedor de la tarjeta del producto -->
-            <div class="max-w-sm bg-white shadow-lg rounded-lg overflow-hidden">
+            <div class="max-w-sm bg-white shadow-lg rounded-lg overflow-hidden relative">
+                <!-- Icono de descuento -->
+                <div class="absolute top-2 right-2 bg-red-500 text-white text-sm font-bold px-2 py-1 rounded">
+                    {{ product.discount }}% OFF
+                </div>
+
                 <!-- Imagen principal del producto -->
                 <img class="w-full h-64 object-cover" :src="product.main_image" alt="Imagen del producto" />
 
@@ -31,8 +29,6 @@ defineProps({
                             {{ category.name }}
                         </span>
                     </p>
-                    
-
 
                     <!-- Stock -->
                     <p class="mt-2 text-green-600" v-if="product.stock === 'Disponible'">
@@ -42,26 +38,17 @@ defineProps({
                         Stock: Agotado
                     </p>
 
-                        <!-- Precio del producto -->
+                    <!-- Precio del producto -->
                     <div class="flex items-center justify-between mt-4">
                         <p class="text-xl line-through text-gray-900 dark:text-white">${{ (parseFloat(product.price) * 1.25).toFixed(2) }}</p>
                         <p class="text-xl font-bold text-gray-800">${{ (parseFloat(product.price)).toFixed(2) }}</p>
                     </div>
-
-
                 </div>
-
-            
-
             </div>
         </div>
-</a>
-        
-
-
-
+    </a>
 </template>
 
 <style scoped>
-
+/* Puedes agregar estilos adicionales aquí si lo deseas */
 </style>

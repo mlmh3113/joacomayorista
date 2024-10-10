@@ -18,6 +18,7 @@ export const useCarritoStore = defineStore("carrito", {
                     cantidad: cantidad,
                     nombre: producto.name,
                     precio: producto.price,
+                    descuento: producto.discount || 0 // Asegúrate de que el producto tenga un campo de descuento
                 });
             }
 
@@ -30,7 +31,10 @@ export const useCarritoStore = defineStore("carrito", {
         },
 
         obtenerTotalCarrito() {
-            return this.productos.reduce((total, producto) => total + (producto.precio * producto.cantidad), 0);
+            return this.productos.reduce((total, producto) => {
+                const precioConDescuento = producto.precio - (producto.precio * (producto.descuento / 100)); // Aplica el descuento
+                return total + (precioConDescuento * producto.cantidad);
+            }, 0);
         },
 
         obtenerProductos() {

@@ -29,7 +29,10 @@ class CartController extends Controller
             'email' => $request->email,
             'telefono' => $request->telefono,
             'fecha' => now(),
+            'envio' => $request->envio,
             'total' => $request->total,
+            'descuento' => $request->descuento
+
         ]);
 
         foreach ($request->productos as $producto) {

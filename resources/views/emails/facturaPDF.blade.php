@@ -49,6 +49,11 @@
         </tbody>
     </table>
 
+    <!-- Detalles de descuentos y envío -->
+    <h3>Detalles de la Compra</h3>
+    <p>Descuentos: -{{ number_format($compra->descuento, 2, ',', '.') }}</p>
+    <p>Costo de Envío: {{ number_format($compra->envio, 2, ',', '.') }}</p>
+    
     <h3>Total de la Compra: {{ number_format($compra->total, 2, ',', '.') }}</h3>
 </body>
 </html>
