@@ -163,7 +163,7 @@ const buscar = () => {
          <Link :href="route('contact')" class="hover:underline text-white">Contacto</Link>
 
 
-         <button id="dropdownDefaultButton" data-dropdown-toggle="dropdown-admin" class="flex items-center text-white"
+         <button v-if="$page.props.auth.isAdmin" id="dropdownDefaultButton" data-dropdown-toggle="dropdown-admin" class="flex items-center text-white"
             type="button">Admin <svg class="w-2.5 h-2.5 ms-3" aria-hidden="true"
                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
