@@ -9,8 +9,8 @@ defineProps({
         <div class="flex justify-center items-center py-8">
             <!-- Contenedor de la tarjeta del producto -->
             <div class="max-w-sm bg-white shadow-lg rounded-lg overflow-hidden relative">
-                <!-- Icono de descuento -->
-                <div class="absolute top-2 right-2 bg-red-500 text-white text-sm font-bold px-2 py-1 rounded">
+                <!-- Icono de descuento (solo se muestra si tiene descuento) -->
+                <div v-if="product.discount > 0" class="absolute top-2 right-2 bg-red-500 text-white text-sm font-bold px-2 py-1 rounded">
                     {{ product.discount }}% OFF
                 </div>
 
@@ -40,7 +40,7 @@ defineProps({
 
                     <!-- Precio del producto -->
                     <div class="flex items-center justify-between mt-4">
-                        <p class="text-xl line-through text-gray-900 dark:text-white">${{ parseFloat(product.price).toFixed(2) }}</p>
+                        <p v-if="product.discount > 0" class="text-xl line-through text-gray-900 dark:text-white">${{ parseFloat(product.price).toFixed(2) }}</p>
                         <p class="text-xl font-bold text-gray-800">${{ (parseFloat(product.price)*(100-product.discount)/100).toFixed(2)  }}</p>
                     </div>
                 </div>

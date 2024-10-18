@@ -22,7 +22,7 @@
         <li>Descuento: ${{ $compra->descuento }}</li>
 
         <!-- Mostrar el gasto de envío -->
-        <li>Costo de Envío: ${{ $compra->envio }}</li>
+        {{-- <li>Costo de Envío: ${{ $compra->envio }}</li> --}}
 
         <!-- Mostrar el total después del descuento y el costo de envío -->
         <li>Total: ${{ $compra->total }}</li>

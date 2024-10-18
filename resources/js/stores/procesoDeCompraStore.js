@@ -110,9 +110,9 @@ export const useProcesoDeCompraStore = defineStore("procesoDeCompra", {
         calcularCostoEnvio() {
             // Costo de envío dependiendo de la provincia
             if (this.provincia === "Buenos Aires") {
-                this.costoEnvio = 2000;
+                this.costoEnvio = 0;
             } else {
-                this.costoEnvio = 4500;
+                this.costoEnvio = 0;
             }
         },
 
@@ -127,6 +127,21 @@ export const useProcesoDeCompraStore = defineStore("procesoDeCompra", {
 
         getTotal() {
             return this.total;
+        },
+
+        limpiarProcesoDeCompra() {
+            this.nombre = "";
+            this.apellido = "";
+            this.email = "";
+            this.direccion = "";
+            this.localidad = "";
+            this.provincia = "";
+            this.codigoPostal = "";
+            this.telefono = "";
+            this.dni = "";
+            this.costoEnvio = 0;
+            this.descuento = 0;
+            this.total = 0;
         },
 
         // Obtener todos los datos de la compra en un objeto

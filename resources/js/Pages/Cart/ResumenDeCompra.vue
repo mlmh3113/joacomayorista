@@ -35,7 +35,10 @@ onMounted(() => {
 
 // Calcula el total de la compra incluyendo el costo de envío
 const totalCompra = computed(() => {
-    const costoEnvio = procesoDeCompra.getCostoEnvio() || 0; // Verifica que sea un número
+
+    // gasto de envio igualado a 0 por pedido inicial
+    const costoEnvio = procesoDeCompra.getCostoEnvio() || 0; 
+
     return totalProductos.value + costoEnvio;
 });
 </script>
@@ -95,9 +98,9 @@ const totalCompra = computed(() => {
             <h3 class="text-xl font-semibold">Total Descuentos: ${{ 
                 Number(procesoDeCompra.getTotalDescuentos()).toFixed(2) || '0.00' 
             }}</h3>
-            <h3 class="text-xl font-semibold">Costo de Envío: ${{ 
+            <!-- <h3 class="text-xl font-semibold">Costo de Envío: ${{ 
                 Number(procesoDeCompra.getCostoEnvio()).toFixed(2) || '0.00' 
-            }}</h3>
+            }}</h3> -->
             <h3 class="text-xl font-semibold mt-2">Total: ${{ 
                 Number(totalCompra).toFixed(2) || '0.00' 
             }}</h3>

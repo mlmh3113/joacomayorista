@@ -32,27 +32,28 @@ class CartController extends Controller
             'envio' => $request->envio,
             'total' => $request->total,
             'descuento' => $request->descuento
-
         ]);
-
+    
         foreach ($request->productos as $producto) {
             $compra->productos()->attach($producto['id'], [
                 'cantidad' => $producto['cantidad'],
                 'precio' => $producto['precio'],
             ]);
         }
-
+    
         // Cargar los productos asociados a la compra
         $productos = $compra->productos()->get();
-
+    
         // Generar el PDF
         $pdf = Pdf::loadView('emails.facturaPDF', ['compra' => $compra, 'productos' => $productos]);
-
+    
         // Enviar el correo con la factura PDF
         Mail::to('contacto@joacomayorista.com.ar')->send(new FacturaMail($compra, $pdf));
 
-        return redirect()->back()->with('success', 'La compra se ha creado correctamente y se ha enviado la factura por correo.');
+
+        return redirect()->back()->with('success', 'La compra ha sido guardada');
     }
+    
 
     public function delete(Request $request)
     {

@@ -77,8 +77,18 @@ const FinalizarCompra = () => {
                 icon: 'success',
                 timer: 4000
             });
+
+            // Limpia el carrito
+            carritoStore.vaciarCarrito();
+
+            // Limpia el proceso de compra
+            procesoDeCompraStore.limpiarProcesoDeCompra();
+
+            router.get(route('index'));
         }
     });
+
+
 };
 
 
@@ -92,7 +102,7 @@ const FinalizarCompra = () => {
     <Head title="Carrito" />
 
     <MainLayout>
-        
+
 
 
 

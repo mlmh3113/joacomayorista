@@ -14,6 +14,8 @@ use App\Http\Controllers\ProfileController;
 
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\Api\ApiProductController;
+use App\Http\Controllers\ImageController;
+use App\Http\Controllers\BannerController;
 
 // Route::get('/', function () {
 //     return Inertia::render('Welcome', [
@@ -74,5 +76,14 @@ Route::post('newsLetter',[NewsController::class, 'store'])->name('newsLetter.sto
 // Route::get('/mail',[MailController::class, 'index'])->name('mail.index');
 
 // Route::get('/mail/send',[MailController::class, 'mailFactura'])->name('mail.send');
+
+//eitar imagen
+
+Route::get('/image/edit', [ImageController::class, 'index'])->name('image.edit');
+
+//edit banner
+
+Route::get('/banner/edit', [BannerController::class, 'index'])->name('banner.edit');
+Route::post('/banner/edit', [BannerController::class, 'store'])->name('banner.store');
 
 require __DIR__.'/auth.php';

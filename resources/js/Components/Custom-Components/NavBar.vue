@@ -3,20 +3,20 @@ import TopHeader from '@/Components/Custom-Components/TopHeader.vue';
 import NavLink from '@/Components/NavLink.vue';
 import { Link, useForm } from '@inertiajs/vue3';
 import { onMounted, computed } from 'vue';
-import { useCarritoStore } from '@/stores/carritoStore'; 
+import { useCarritoStore } from '@/stores/carritoStore';
 import { useCategoriesStore } from '@/stores/categoriesStore';
 
 
 
 // Acceder al store
 
-const carritoStore = useCarritoStore(); 
+const carritoStore = useCarritoStore();
 
 
 
 
 onMounted(() => {
-   carritoStore.obtenerProductos(); 
+   carritoStore.obtenerProductos();
    initFlowbite();
 
 });
@@ -46,7 +46,7 @@ const buscar = () => {
 
 
    <nav class="bg-teal-500 w-full">
-      
+
       <div class="dark:bg-black grid grid-cols-4">
          <div class="col-span-1 flex justify-start items-center">
             <a :href="route('index')">
@@ -71,7 +71,7 @@ const buscar = () => {
             </form>
          </div>
 
-         
+
 
 
          <div class="col-span-1 flex justify-end gap-5 items-center p-5 relative">
@@ -133,16 +133,15 @@ const buscar = () => {
 
 
 
-         <button id="dropdownDefaultButton" data-dropdown-toggle="dropdown-product"
-            class="flex items-center text-white"
+         <button id="dropdownDefaultButton" data-dropdown-toggle="dropdown-product" class="flex items-center text-white"
             type="button">Productos <svg class="w-2.5 h-2.5 ms-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
                fill="none" viewBox="0 0 10 6">
                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                   d="m1 1 4 4 4-4" />
             </svg>
          </button>
-         
-         
+
+
 
          <!-- Dropdown menu -->
          <div id="dropdown-product"
@@ -151,7 +150,7 @@ const buscar = () => {
                <li v-for="category in categories" :key="category.id">
                   <Link :href="route('product.category', category.name)"
                      class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">{{
-                  category.name }}</Link>
+                        category.name }}</Link>
 
                </li>
 
@@ -163,11 +162,38 @@ const buscar = () => {
 
          <Link :href="route('contact')" class="hover:underline text-white">Contacto</Link>
 
-        
-         <Link v-if="$page.props.auth.isAdmin" :href="route('products')" class="hover:underline text-white">Crear Producto</Link>
-         <Link v-if="$page.props.auth.isAdmin" :href="route('categories')" class="hover:underline text-white">Crear Categoria</Link>
 
-        
+         <button id="dropdownDefaultButton" data-dropdown-toggle="dropdown-admin" class="flex items-center text-white"
+            type="button">Admin <svg class="w-2.5 h-2.5 ms-3" aria-hidden="true"
+               xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+               <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="m1 1 4 4 4-4" />
+            </svg>
+         </button>
+
+
+
+         <!-- Dropdown menu -->
+         <div id="dropdown-admin"
+            class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
+            <ul class=" m-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDefaultButton">
+               <li>
+                  <Link v-if="$page.props.auth.isAdmin" :href="route('products')" class="hover:underline">
+                  Crear Producto</Link>
+               </li>
+               <li>
+                  <Link v-if="$page.props.auth.isAdmin" :href="route('categories')" class="hover:underline">
+                  Crear Categoria</Link>
+               </li>
+
+            </ul>
+         </div>
+
+
+
+
+
+
       </div>
 
    </nav>
@@ -228,7 +254,7 @@ const buscar = () => {
       </div>
    </div>
 
-   
+
 </template>
 
 <style scoped>

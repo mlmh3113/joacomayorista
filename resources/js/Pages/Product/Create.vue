@@ -87,10 +87,13 @@ function submit() {
             <!-- Imagen Principal -->
             <div class="mb-6">
                 <InputLabel for="main_image" value="Imagen Principal" />
-                <div v-if="form.main_image" class="my-4">
+                <div class="my-4 gap-4">
+                                   <div v-if="form.main_image" class="my-4">
                     <img class="w-52 h-52 object-cover mx-auto rounded-full shadow-md" :src="form.main_image" alt="imagen_principal">
                 </div>
-                <button @click="mainImage" class="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-700 transition">Subir Imagen Principal</button>
+                <button @click="mainImage" class="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-700 transition">Subir Imagen Principal</button> 
+                </div>
+
             </div>
 
             <!-- Imágenes Secundarias -->
@@ -137,6 +140,7 @@ function submit() {
                         <option value="10">10%</option>
                         <option value="20">20%</option>
                         <option value="35">35%</option>
+                        <option value="50">2 x 1</option>
                     </select>
                     <InputError class="mt-2" :message="form.errors.discount" />
                 </div>
