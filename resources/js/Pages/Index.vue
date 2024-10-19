@@ -31,11 +31,15 @@
         <!-- Sección de Destacados -->
         <div v-if="products.some(product => product.discount === '0')" class="flex flex-col justify-center items-center w-full my-5">
             <h2 class="text-3xl font-bold text-black dark:text-white">Destacados</h2>
-            <ProductCard 
+
+            <div  class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 my-5" >
+        <ProductCard  class="col-span-1"
               v-for="product in products.filter(product => product.discount === '0')" 
               :key="product.id" 
               :product="product" 
             />
+            </div>
+    
         </div>
 
         <NewsLetter />
