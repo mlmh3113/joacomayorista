@@ -45,7 +45,7 @@ const buscar = () => {
 
 
 
-   <nav class="bg-teal-500 w-full z-30 absolute">
+   <nav class="bg-teal-500 w-full z-30 abs">
 
       <div class="dark:bg-black grid grid-cols-4">
          <div class="col-span-1 flex justify-start items-center">
@@ -92,7 +92,7 @@ const buscar = () => {
 
             <!-- Dropdown menu -->
             <div id="dropdown-sesion"
-               class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
+               class="z-30 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 ">
                <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDefaultButton">
                   <li>
                      <a v-if="!$page.props.auth.user" :href="route('register')"
@@ -151,7 +151,7 @@ const buscar = () => {
 
          <!-- Dropdown menu -->
          <div id="dropdown-product"
-            class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
+            class="z-30 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
             <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDefaultButton">
                <li v-for="category in categories" :key="category.id">
                   <Link :href="route('product.category', category.name)"
@@ -181,7 +181,7 @@ const buscar = () => {
 
          <!-- Dropdown menu -->
          <div id="dropdown-admin"
-            class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
+            class="z-30 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
             <ul class=" m-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDefaultButton">
                <li>
                   <Link v-if="$page.props.auth.isAdmin" :href="route('products')" class="hover:underline">

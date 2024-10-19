@@ -42,7 +42,7 @@ const allImages = [props.product.main_image, ...images];
 
     <MainLayout>
 
-        <div class="w-full">
+        <div class="w-full ">
             <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 p-4">
                 <div class="col-span-1">
                     <swiper
