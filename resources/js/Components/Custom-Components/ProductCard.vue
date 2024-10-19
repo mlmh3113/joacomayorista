@@ -5,13 +5,15 @@ defineProps({
 </script>
 
 <template>
-    <a :href="route('product.show', product.id)">
+    <a v-if="product.stock === 'Disponible'" :href="route('product.show', product.id)">
         <div class="flex justify-center items-center py-8">
             <!-- Contenedor de la tarjeta del producto -->
-            <div class="max-w-sm bg-white shadow-lg rounded-lg overflow-hidden relative">
+            <div class="w-64 bg-white shadow-lg rounded-lg overflow-hidden relative">
                 <!-- Icono de descuento (solo se muestra si tiene descuento) -->
-                <div v-if="product.discount > 0" class="absolute top-2 right-2 bg-red-500 text-white text-sm font-bold px-2 py-1 rounded">
-                    {{ product.discount }}% OFF
+                <div v-if="product.discount > 0" class="absolute top-2 right-2 bg-red-500 text-white text-sm font-bold px-2 py-1 rounded animate-pulse">
+                    <!-- Mostrar "2 x 1" si el descuento es del 50%, de lo contrario mostrar el porcentaje -->
+                    <span v-if="product.discount == 50">2 x 1</span>
+                    <span v-else>{{ product.discount }}% OFF</span>
                 </div>
 
                 <!-- Imagen principal del producto -->
@@ -40,8 +42,8 @@ defineProps({
 
                     <!-- Precio del producto -->
                     <div class="flex items-center justify-between mt-4">
-                        <p v-if="product.discount > 0" class="text-xl line-through text-gray-900 dark:text-white">${{ parseFloat(product.price).toFixed(2) }}</p>
-                        <p class="text-xl font-bold text-gray-800">${{ (parseFloat(product.price)*(100-product.discount)/100).toFixed(2)  }}</p>
+                        <p v-if="product.discount > 0" class="text-xl line-through text-gray-900 dark:text-white">${{ parseFloat(product.price) }}</p>
+                        <p class="text-xl font-bold text-gray-800 animate-pulse">${{ (parseFloat(product.price)*(100-product.discount)/100)  }}</p>
                     </div>
                 </div>
             </div>
@@ -50,5 +52,16 @@ defineProps({
 </template>
 
 <style scoped>
-/* Puedes agregar estilos adicionales aquí si lo deseas */
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1); /* Crece un poco más en el centro de la animación */
+    }
+}
+
+.animate-pulse {
+    animation: pulse 1.5s infinite; /* Animación que dura 1.5 segundos y se repite infinitamente */
+}
 </style>

@@ -55,21 +55,27 @@ const buscar = () => {
          </div>
 
          <div class="flex justify-center items-center w-full col-span-2">
-            <form @submit.prevent="buscar" class="flex w-full items-center mx-auto justify-center">
-               <label for="voice-search" class="sr-only">Search</label>
-               <div class="relative w-full">
-                  <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
-                     <i class="fa-regular fa-face-grin-wink text-gray-900"></i>
-                  </div>
-                  <input v-model="searchForm.search" type="text" id="voice-search"
-                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                     placeholder="Busca tu producto..." required />
-                  <button @click="buscar" type="button" class="absolute inset-y-0 end-0 flex items-center pe-3">
-                     <i class="fa-solid fa-magnifying-glass text-gray-900"></i>
-                  </button>
-               </div>
-            </form>
-         </div>
+    <form @submit.prevent="buscar" class="flex w-full items-center mx-auto justify-center">
+        <label for="voice-search" class="sr-only">Search</label> <!-- Mantener el label oculto -->
+        <div class="relative w-full">
+            <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+                <i class="fa-regular fa-face-grin-wink text-gray-900"></i>
+            </div>
+            <input 
+                v-model="searchForm.search" 
+                type="text" 
+                id="voice-search"
+                class="bg-gray-50 border border-gray-300 text-gray-900 text-xs md:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                placeholder="Busca tu producto..." 
+                required 
+            />
+            <button @click="buscar" type="button" class="absolute inset-y-0 end-0 flex items-center pe-3">
+                <i class="fa-solid fa-magnifying-glass text-gray-900"></i>
+            </button>
+        </div>
+    </form>
+</div>
+
 
 
 

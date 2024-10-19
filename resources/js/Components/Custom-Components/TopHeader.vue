@@ -2,7 +2,7 @@
 import {ref, onMounted} from 'vue';
 
 const text = [
-'Compra minima $20mil. ENVIO GRATIS EN COMPRAS SUPERIORES a $150mil',
+'Compra minima $20.000',
     'Telefono +541155061985',
     'Mail joaco.mayorista.tienda@gmail.com',
     'Envios a todos el pais',

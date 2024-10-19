@@ -28,32 +28,33 @@ const form = useForm({
                 <h1 class="text-3xl font-bold">Contacto</h1>
             </div>
 
-            <div class="grid grid-cols-2">
+            <div class=" flex flex-col md:grid md:grid-cols-2">
 
                 <div class="flex flex-col justify-center items-start space-y-3">
-        <p class="text-lg font-medium text-gray-800">
-            Cualquier duda, consúltenos al WhatsApp: 
-            <a href="https://wa.me/1130564480" class=" font-bold hover:underline">1130564480</a>
-        </p>
+                    <p class="text-lg font-medium text-gray-800">
+                        Cualquier duda, consúltenos al WhatsApp:
+                        <a href="https://wa.me/1130564480" class=" font-bold hover:underline">1155061985</a>
+                    </p>
 
-        <p class="text-lg font-medium text-gray-800">
-            Teléfono: 
-            <span class="font-bold">541164646464</span>
-        </p>
+                    <p class="text-lg font-medium text-gray-800">
+                        Teléfono:
+                        <span class="font-bold">541155061985</span>
+                    </p>
 
-        <p class="text-lg font-medium text-gray-800">
-            Email: 
-            <a href="mailto:tienda@joacomayorista.com" class=" font-bold hover:underline">tienda@joacomayorista.com</a>
-        </p>
+                    <p class="text-lg font-medium text-gray-800">
+                        Email:
+                        <a href="mailto:tienda@joacomayorista.com"
+                            class=" font-bold hover:underline">joaco.mayorista.tienda@gmail.com</a>
+                    </p>
 
-        <p class="text-lg font-medium text-gray-800">
-            Ubicación: 
-            <span class="font-bold">Buenos Aires, Argentina</span>
-        </p>
-    </div>
+                    <p class="text-lg font-medium text-gray-800">
+                        Ubicación:
+                        <span class="font-bold">Buenos Aires, Argentina</span>
+                    </p>
+                </div>
 
 
-                <div>
+                <div class="mx-1">
                     <div
                         class="flex flex-col gap-5 md:grid md:grid-cols-2 md:space-x-5 min-w-full bg-[#22143D] py-10 mb-20 mt-10 relative ">
 

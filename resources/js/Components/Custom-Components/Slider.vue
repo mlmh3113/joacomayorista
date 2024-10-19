@@ -16,9 +16,9 @@
       :modules="modules"
       class="mySwiper"
     >
-      <swiper-slide><img class="w-full h-56 md:h-96 object-cover " src="https://res.cloudinary.com/dkoocayxp/image/upload/v1728227139/Joaco%20Mayorista/watch-wrist-hand-leaf_hbert9.png" alt=""></swiper-slide>
-      <swiper-slide><img class="w-full h-56 md:h-96 object-cover " src="https://res.cloudinary.com/dkoocayxp/image/upload/v1728227132/Joaco%20Mayorista/wallet-leather-bag-bag-the-money_f6evsf.png" alt=""></swiper-slide>
-      <swiper-slide><img class="w-full h-56 md:h-96 object-cover " src="https://res.cloudinary.com/dkoocayxp/image/upload/v1728227597/Joaco%20Mayorista/love-heart-key-red-love-hd-wallp_hs0f4p.png" alt=""></swiper-slide>
+      <swiper-slide><img class="w-full h-56 md:h-96 object-cover " src="https://res.cloudinary.com/dkoocayxp/image/upload/v1729350545/Joaco%20Mayorista/llaveros_ujzfzk.jpg" alt=""></swiper-slide>
+      <swiper-slide><img class="w-full h-56 md:h-96 object-cover " src="https://res.cloudinary.com/dkoocayxp/image/upload/v1729352364/Joaco%20Mayorista/billetera2_fhriy4.jpg" alt=""></swiper-slide>
+      <swiper-slide><img class="w-full h-56 md:h-96 object-cover " src="https://res.cloudinary.com/dkoocayxp/image/upload/v1729352397/Joaco%20Mayorista/billetera_v8kklq.jpg" alt=""></swiper-slide>
 
     </swiper>
   </template>
