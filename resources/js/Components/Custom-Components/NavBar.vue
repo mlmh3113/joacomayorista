@@ -45,7 +45,7 @@ const buscar = () => {
 
 
 
-   <nav class="bg-teal-500 w-full z-30 abs">
+   <nav class="bg-teal-500 w-full z-30 sticky top-0">
 
       <div class="dark:bg-black grid grid-cols-4">
          <div class="col-span-1 flex justify-start items-center">

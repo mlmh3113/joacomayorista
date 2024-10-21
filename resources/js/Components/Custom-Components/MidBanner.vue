@@ -5,16 +5,12 @@ const props = defineProps({
   banner: Object
 });
 
-// Constante para la imagen por defecto
 const defaultImage = "https://res.cloudinary.com/dkoocayxp/image/upload/v1728249073/Joaco%20Mayorista/daughter-closed-her-mother-s-eye_eiuskc.png";
 
-// Computed para procesar la imagen del banner y remover las comillas escapadas si existen
 const bannerImage = computed(() => {
-  // Intentamos parsear el campo 'images' si es una cadena escapada
   try {
     return props.banner.images ? JSON.parse(props.banner.images) : defaultImage;
   } catch (error) {
-    // Si falla el parseo, simplemente usamos el valor tal cual o la imagen por defecto
     return props.banner.images || defaultImage;
   }
 });
@@ -22,7 +18,6 @@ const bannerImage = computed(() => {
 
 <template>
   <div class="banner-container">
-  
     <!-- Renderizamos el banner recibido -->
     <img
       :src="bannerImage"
@@ -32,30 +27,43 @@ const bannerImage = computed(() => {
 
     <!-- Icono de editar, visible solo si $page.props.auth.user existe -->
     <a v-if="$page.props.auth.user" :href="route('banner.edit')" class="edit-icon">
-      🖉 <!-- Puedes cambiar este icono por cualquier otro o usar una librería de iconos -->
+      🖉
     </a>
   </div>
 </template>
 
 <style scoped>
 .banner-container {
-  position: relative; /* Necesario para posicionar el ícono sobre la imagen */
+  position: relative;
   width: 100%;
-  overflow: hidden; /* Asegura que no haya desbordamiento */
+  overflow: hidden;
 }
 
 .banner-image {
   width: 100%;
-  height: auto; /* Mantiene la proporción */
-  max-height: 300px; /* Ajusta la altura máxima según lo necesario */
-  object-fit: cover; /* Cubre el contenedor sin distorsionar la imagen */
+  height: auto;
+  object-fit: cover;
+}
+
+@media (min-width: 768px) {
+  .banner-image {
+    max-width: 100%; /* Ocupará el 100% del contenedor en pantallas md y más grandes */
+    max-height: none; /* Permite que la imagen crezca si es necesario */
+  }
+}
+
+@media (min-width: 1280px) {
+  .banner-container {
+    max-width: 80rem; /* 7xl en Tailwind (80rem equivale a 1280px) */
+    margin: 0 auto; /* Centra el contenedor */
+  }
 }
 
 .edit-icon {
-  position: absolute; /* Posiciona el ícono en relación con el contenedor */
-  top: 10px; /* Ajusta la posición según sea necesario */
+  position: absolute;
+  top: 10px;
   right: 10px;
-  background-color: rgba(0, 0, 0, 0.5); /* Fondo semi-transparente */
+  background-color: rgba(0, 0, 0, 0.5);
   color: white;
   padding: 5px;
   border-radius: 50%;

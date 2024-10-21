@@ -13,33 +13,48 @@
             </div>
         </div>
 
-        <hr>
+        <hr class="my-5"/>
 
-        <!-- Sección de Promociones -->
+        <div >
+            <Banner />
+        </div>
+
+        
+
+        <hr />
+
+        <div>
+            <ImageSelect />
+        </div>
+
+        <!-- Sección de Promociones con scroll horizontal -->
         <div v-if="products.some(product => product.discount !== '0')" class="flex flex-col justify-center items-center w-full my-5">
             <h2 class="text-3xl font-bold text-black dark:text-white">Promociones</h2>
 
-            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 my-5">
-                <ProductCard class="col-span-1"
+            <!-- Contenedor para scroll lateral -->
+            <div class="flex space-x-4 overflow-x-scroll w-full px-4 my-5">
+                <ProductCard 
                   v-for="product in products.filter(product => product.discount !== '0')" 
                   :key="product.id" 
                   :product="product" 
+                  class="w-64 flex-shrink-0"
                 />
             </div>
         </div>
 
-        <!-- Sección de Destacados -->
+        <!-- Sección de Destacados con scroll horizontal -->
         <div v-if="products.some(product => product.discount === '0')" class="flex flex-col justify-center items-center w-full my-5">
             <h2 class="text-3xl font-bold text-black dark:text-white">Destacados</h2>
 
-            <div  class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 my-5" >
-        <ProductCard  class="col-span-1"
-              v-for="product in products.filter(product => product.discount === '0')" 
-              :key="product.id" 
-              :product="product" 
-            />
+            <!-- Contenedor para scroll lateral -->
+            <div class="flex space-x-4 overflow-x-scroll w-full px-4 my-5">
+                <ProductCard 
+                  v-for="product in products.filter(product => product.discount === '0')" 
+                  :key="product.id" 
+                  :product="product" 
+                  class="w-64 flex-shrink-0"
+                />
             </div>
-    
         </div>
 
         <NewsLetter />
@@ -53,9 +68,10 @@ import { Head } from '@inertiajs/vue3';
 import { onMounted, defineProps } from 'vue';
 import Slider from '@/Components/Custom-Components/Slider.vue';
 import NewsLetter from '@/Components/Custom-Components/NewsLetter.vue';
-import CategorySlider from '@/Components/Custom-Components/CategorySlider.vue';
 import ProductCard from '@/Components/Custom-Components/ProductCard.vue';
 import MidBanner from '@/Components/Custom-Components/MidBanner.vue';
+import ImageSelect from '@/Components/Custom-Components/ImageSelect.vue';
+import Banner from '@/Components/Custom-Components/Banner.vue';
 
 onMounted(() => {
     initFlowbite();
@@ -71,11 +87,25 @@ const props = defineProps({
 
 <style scoped>
 .absolute {
-    z-index: 10; /* Asegúrate de que el texto esté en la parte superior */
+    z-index: 10;
 }
 
 /* Sombra de texto personalizada */
 .text-shadow {
-    text-shadow: 2px 2px 4px rgba(28, 12, 12, 0.845); /* Ajusta los valores según necesites */
+    text-shadow: 2px 2px 4px rgba(28, 12, 12, 0.845);
+}
+
+/* Personaliza el estilo del scroll (opcional) */
+.flex::-webkit-scrollbar {
+    height: 10px;
+}
+
+.flex::-webkit-scrollbar-thumb {
+    background-color: #888;
+    border-radius: 10px;
+}
+
+.flex::-webkit-scrollbar-thumb:hover {
+    background-color: #555;
 }
 </style>
