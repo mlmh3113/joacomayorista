@@ -16,6 +16,7 @@ const form = useForm({
     name: '',
     description: '',
     price: '',
+    discount: 0,
     category_id: '',
     stock: '',
     color: '',
@@ -33,6 +34,7 @@ onMounted(() => {
         form.name = props.product.name;
         form.description = props.product.description;
         form.price = props.product.price;
+        form.discount = props.product.discount;
         form.category_id = props.product.category_id;
         form.stock = props.product.stock;
         form.color = props.product.color;
@@ -125,6 +127,20 @@ function submit() {
                     <TextInput id="price" type="text" class="mt-1 block w-full" v-model="form.price" required />
                     <InputError class="mt-2" :message="form.errors.price" />
                 </div>
+
+                <div>
+                    <InputLabel for="discount" value="Descuento" />
+                    <select v-model="form.discount" class="mt-1 block w-full border-gray-300 rounded-lg" required>
+                        <option value="" disabled>Selecciona un descuento</option>
+                        <option value="0">Sin Descuento</option>
+                        <option value="10">10%</option>
+                        <option value="20">20%</option>
+                        <option value="35">35%</option>
+                        <option value="50">2 x 1</option>
+                    </select>
+                    <InputError class="mt-2" :message="form.errors.discount" />
+                </div>
+
                 <div>
                     <select required v-model="form.category_id">
                         <option disabled value="">Selecciona una categoría</option>
